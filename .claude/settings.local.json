@@ -15,7 +15,14 @@
       "WebFetch(domain:env.t3.gg)",
       "Bash(git check-ignore:*)",
       "Bash(node:*)",
-      "Bash(npm uninstall:*)"
+      "Bash(npm uninstall:*)",
+      "Bash(1:*)",
+      "Bash(PRISMA_USER_CONSENT_FOR_DANGEROUS_AI_ACTION=\"yes\" npx prisma migrate reset --force 2>&1)",
+      "WebSearch",
+      "WebFetch(domain:www.miluim.idf.il)",
+      "WebFetch(domain:api.miluim.idf.il)",
+      "WebFetch(domain:ai.google.dev)",
+      "Bash(grep -E \"\\\\.md$\")"
     ]
   }
 }
