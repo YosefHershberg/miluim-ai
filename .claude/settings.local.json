@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx:*)",
+      "Bash(npm -v)",
+      "Bash(shopt -s dotglob)",
+      "Bash(mv /c/Users/berio/OneDrive/Desktop/Projects/miluimAI/miluim-ai/* /c/Users/berio/OneDrive/Desktop/Projects/miluimAI/)",
+      "Bash(mv /c/Users/berio/OneDrive/Desktop/Projects/miluimAI/miluim-ai/.* /c/Users/berio/OneDrive/Desktop/Projects/miluimAI/)",
+      "mcp__plugin_supabase_supabase__list_projects",
+      "mcp__plugin_supabase_supabase__get_project_url",
+      "mcp__plugin_supabase_supabase__get_publishable_keys",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "mcp__plugin_supabase_supabase__get_project",
+      "WebFetch(domain:env.t3.gg)",
+      "Bash(git check-ignore:*)",
+      "Bash(node:*)",
+      "Bash(npm uninstall:*)"
+    ]
+  }
+}
