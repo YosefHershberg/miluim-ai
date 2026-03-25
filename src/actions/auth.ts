@@ -4,9 +4,10 @@ import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 
-export async function loginWithGoogle() {
+export async function signInWithGoogle() {
   const supabase = await createClient();
-  const origin = (await headers()).get("origin");
+  const headersList = await headers();
+  const origin = headersList.get("origin") || "http://localhost:3000";
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
@@ -15,9 +16,12 @@ export async function loginWithGoogle() {
     },
   });
 
-  if (error) {
-    redirect("/login?error=auth");
-  }
+  if (error) throw new Error(error.message);
+  if (data.url) redirect(data.url);
+}
 
-  redirect(data.url);
+export async function signOut() {
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+  redirect("/");
 }
