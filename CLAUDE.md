@@ -8,7 +8,6 @@ MiluimAI is a Next.js web application that calculates grants, benefits, and righ
 
 - **`PRD.md`** — Product Requirements Document. Contains all features, routes, database schema, architecture, and UX requirements. **Update this file after every major feature addition or change.**
 - **`CALCULATIONS.md`** — Complete calculation reference for all grants and benefits. Contains every formula, rate, threshold, and worked example. **This is the single source of truth for all benefit calculations. Never deviate from it.**
-- **`AGENT_PROMPT.md`** — Full build prompt with implementation phases and code patterns.
 - **`example-files-3010/`** — Sample 3010 PDF documents for testing AI extraction.
 
 ## Tech Stack
