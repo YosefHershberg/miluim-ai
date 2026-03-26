@@ -38,7 +38,7 @@ export function BenefitCard({ benefit }: { benefit: BenefitResult }) {
             </div>
             <div>
               <p className="font-medium leading-tight">{locale === "he" ? benefit.nameHe : benefit.nameEn}</p>
-              <p className="text-xs text-muted-foreground">{locale === "he" ? benefit.nameEn : benefit.nameHe}</p>
+              <p className="text-xs text-muted-foreground">{locale === "he" ? benefit.description : benefit.nameEn}</p>
               {!benefit.eligible && benefit.ineligibleReason && (
                 <p className="text-xs text-destructive mt-1">
                   {locale === "en" ? translateIneligibleReason(benefit.ineligibleReason) : benefit.ineligibleReason}

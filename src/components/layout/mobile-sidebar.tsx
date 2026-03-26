@@ -26,7 +26,7 @@ const NAV_ITEMS = [
 ];
 
 export function MobileSidebar({ userName }: { userName: string }) {
-  const { t } = useTranslation();
+  const { t, dir } = useTranslation();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -37,7 +37,7 @@ export function MobileSidebar({ userName }: { userName: string }) {
       >
         <Menu className="h-5 w-5" />
       </SheetTrigger>
-      <SheetContent side="right" className="w-72">
+      <SheetContent side={dir === "ltr" ? "left" : "right"} className="w-72">
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2">
             <Shield className="h-5 w-5 text-primary" />
