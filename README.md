@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MiluimAI
+
+A web application that calculates grants, benefits, and rights for Israeli army reservists (מילואים). Uses AI to extract service period data from official 3010 PDF documents and computes all eligible benefits based on Israeli government frameworks.
+
+## Features
+
+- Google OAuth authentication via Supabase Auth
+- AI-powered extraction of service data from 3010 PDF documents (Gemini API)
+- Automatic calculation of NII compensation, wartime benefits (2025/2026), and business owner grants
+- Full Hebrew UI with RTL layout
+- Dark/light mode
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router) + React 19 + TypeScript
+- **Database:** Supabase PostgreSQL + Prisma 7 ORM
+- **Auth:** Supabase Auth (Google OAuth)
+- **AI:** Google Gemini API (`@google/genai`)
+- **UI:** shadcn/ui + Tailwind CSS v4 + Framer Motion
+- **Validation:** Zod
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js 18+
+- A Supabase project
+- Google OAuth credentials
+- Google Gemini API key
+
+### Environment Variables
+
+Create a `.env.local` file:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+DATABASE_URL=
+GEMINI_API_KEY=
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Install & Run
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+### Database
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npx prisma generate   # Regenerate Prisma client
+npx prisma db push    # Push schema to database
+npx prisma studio     # Open Prisma Studio
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/           # Next.js pages (App Router)
+│   ├── (auth)/    # Login, OAuth callback
+│   └── (app)/     # Authenticated routes
+├── components/    # React components
+├── services/      # Business logic & calculations
+├── data-access/   # Prisma database operations
+├── actions/       # Next.js Server Actions
+└── lib/           # Utilities (supabase, prisma, i18n)
+```
 
-## Deploy on Vercel
+## Disclaimer
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Calculation results are for informational purposes only and do not constitute legal or financial advice. Always verify eligibility with the relevant government authority (ביטוח לאומי).
