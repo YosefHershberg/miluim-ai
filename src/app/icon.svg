@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a7a4c"/>
+      <stop offset="100%" stop-color="#0f5c35"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.2)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded square background -->
+  <rect width="512" height="512" rx="108" fill="url(#bg)"/>
+  <rect width="512" height="512" rx="108" fill="url(#shine)"/>
+  <!-- Shield shape -->
+  <path d="M256 72 L400 140 Q408 144 408 153 L408 260 Q408 340 256 440 Q104 340 104 260 L104 153 Q104 144 112 140 Z" fill="none" stroke="rgba(255,255,255,0.95)" stroke-width="18" stroke-linejoin="round"/>
+  <!-- Inner shield fill (subtle) -->
+  <path d="M256 92 L384 152 Q390 155 390 162 L390 256 Q390 326 256 418 Q122 326 122 256 L122 162 Q122 155 128 152 Z" fill="rgba(255,255,255,0.08)"/>
+  <!-- "AI" text -->
+  <text x="256" y="310" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="180" fill="white" letter-spacing="-8">AI</text>
+</svg>

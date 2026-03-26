@@ -11,6 +11,9 @@ const heebo = Heebo({
 export const metadata: Metadata = {
   title: "MiluimAI",
   description: "מחשבון הטבות מילואים — AI-powered IDF reserve duty benefits calculator",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
