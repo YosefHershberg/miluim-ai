@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Shield, FileUp, Calculator, BarChart3, ArrowLeft, ArrowRight, Sparkles, ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -113,11 +113,9 @@ export function LandingPage({ isAuthenticated = false }: { isAuthenticated?: boo
           <div className="flex items-center gap-2">
             <LanguageToggle />
             <ThemeToggle />
-            <Button variant="outline" size="sm" asChild>
-              <a href={isAuthenticated ? "/dashboard" : "/login"}>
+            <a href={isAuthenticated ? "/dashboard" : "/login"} className={buttonVariants({ variant: "outline", size: "sm" })}>
                 {isAuthenticated ? t("nav.dashboard") : t("nav.signIn")}
-              </a>
-            </Button>
+            </a>
           </div>
         </nav>
       </motion.header>
@@ -185,19 +183,15 @@ export function LandingPage({ isAuthenticated = false }: { isAuthenticated?: boo
           custom={3}
         >
           {isAuthenticated ? (
-            <Button size="lg" asChild className="gap-2 text-base px-8 h-12 shadow-lg shadow-primary/25">
-              <a href="/dashboard" className="inline-flex items-center gap-2">
+            <a href="/dashboard" className={buttonVariants({ size: "lg", className: "gap-2 text-base px-8 h-12 shadow-lg shadow-primary/25 inline-flex items-center" })}>
                 {t("nav.dashboard")}
                 <ArrowIcon className="h-4 w-4" />
-              </a>
-            </Button>
+            </a>
           ) : (
-            <Button size="lg" asChild className="gap-2 text-base px-8 h-12 shadow-lg shadow-primary/25">
-              <a href="/login" className="inline-flex items-center gap-2">
+            <a href="/login" className={buttonVariants({ size: "lg", className: "gap-2 text-base px-8 h-12 shadow-lg shadow-primary/25 inline-flex items-center" })}>
                 {t("landing.hero.cta")}
                 <ArrowIcon className="h-4 w-4" />
-              </a>
-            </Button>
+            </a>
           )}
           <Button
             variant="outline"
@@ -341,11 +335,9 @@ export function LandingPage({ isAuthenticated = false }: { isAuthenticated?: boo
                   {t("landing.cta.subtitle")}
                 </p>
 
-                <Button size="lg" asChild className="gap-2 text-base px-10 h-12 shadow-lg shadow-primary/25">
-                  <a href={isAuthenticated ? "/dashboard" : "/login"}>
+                <a href={isAuthenticated ? "/dashboard" : "/login"} className={buttonVariants({ size: "lg", className: "gap-2 text-base px-10 h-12 shadow-lg shadow-primary/25" })}>
                     {isAuthenticated ? t("nav.dashboard") : t("landing.cta.button")}
-                  </a>
-                </Button>
+                </a>
               </CardContent>
             </Card>
           </motion.div>
