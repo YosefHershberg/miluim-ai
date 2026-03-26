@@ -29,19 +29,19 @@ interface Period {
   activityTier: string | null;
 }
 
-const roleLabels: Record<string, string> = {
-  COMBAT: "לוחם",
-  TERRITORIAL_DEFENSE: "הגנה מרחבית",
-  SUPPORT: "תומך/עורפי",
+const roleKeys: Record<string, string> = {
+  COMBAT: "roles.combat",
+  TERRITORIAL_DEFENSE: "roles.territorialDefense",
+  SUPPORT: "roles.support",
 };
 
-const tierLabels: Record<string, string> = {
-  ALEPH_PLUS: "א+",
-  ALEPH: "א",
-  BET: "ב",
-  GIMEL: "ג",
-  DALET: "ד",
-  HE: "ה",
+const tierKeys: Record<string, string> = {
+  ALEPH_PLUS: "tiers.alephPlus",
+  ALEPH: "tiers.aleph",
+  BET: "tiers.bet",
+  GIMEL: "tiers.gimel",
+  DALET: "tiers.dalet",
+  HE: "tiers.he",
 };
 
 export function ServicePeriodsList({ periods }: { periods: Period[] }) {
@@ -113,21 +113,21 @@ export function ServicePeriodsList({ periods }: { periods: Period[] }) {
                         </p>
                         <div className="flex items-center gap-2 mt-1">
                           <span className="text-sm text-muted-foreground">
-                            {period.totalDays} ימים
+                            {period.totalDays} {t("common.days")}
                           </span>
                           {period.isEmergencyOrder && (
                             <Badge variant="secondary" className="text-xs">
-                              צו 8
+                              {t("myMiluim.orderTzav8")}
                             </Badge>
                           )}
                           {period.role && (
                             <Badge variant="outline" className="text-xs">
-                              {roleLabels[period.role]}
+                              {t(roleKeys[period.role])}
                             </Badge>
                           )}
                           {period.activityTier && (
                             <Badge variant="outline" className="text-xs">
-                              מדרג {tierLabels[period.activityTier]}
+                              {t("myMiluim.tier", { tier: t(tierKeys[period.activityTier]) })}
                             </Badge>
                           )}
                         </div>
@@ -151,7 +151,7 @@ export function ServicePeriodsList({ periods }: { periods: Period[] }) {
       <Dialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>מחיקת תקופת מילואים</DialogTitle>
+            <DialogTitle>{t("myMiluim.deletePeriodTitle")}</DialogTitle>
             <DialogDescription>
               {t("myMiluim.deleteConfirm")}
             </DialogDescription>

@@ -82,7 +82,7 @@ export function BenefitsView({ benefits, totalDirect }: BenefitsViewProps) {
           {ineligible.length > 0 && (
             <div className="space-y-3 mt-6">
               <p className="text-sm text-muted-foreground font-medium">
-                הטבות שאינך זכאי להן כרגע
+                {t("benefits.ineligibleTitle")}
               </p>
               {ineligible.map((benefit, i) => (
                 <motion.div
@@ -111,18 +111,9 @@ export function BenefitsView({ benefits, totalDirect }: BenefitsViewProps) {
       <Card className="border-amber-500/30 bg-amber-50/50 dark:bg-amber-950/20">
         <CardContent className="py-4 flex gap-3">
           <AlertTriangle className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
-          <div className="text-sm text-muted-foreground space-y-2">
-            <p>
-              מחשבון זה הינו לצרכי מידע בלבד. סכומי ההטבות בפועל עשויים להשתנות
-              בהתאם לנסיבות אישיות, עדכוני מדיניות והחלטות מנהליות. לחישובים
-              מוגדרים, פנה לביטוח לאומי (*6050), יועץ מס או עורך דין לדיני עבודה.
-            </p>
-            <p className="text-xs">
-              This calculator is for informational purposes only. Actual benefit
-              amounts may vary. Consult the National Insurance Institute (*6050),
-              a tax advisor, or a labor law attorney.
-            </p>
-          </div>
+          <p className="text-sm text-muted-foreground">
+            {t("benefits.disclaimer")}
+          </p>
         </CardContent>
       </Card>
     </div>

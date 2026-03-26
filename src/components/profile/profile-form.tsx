@@ -26,10 +26,10 @@ interface ProfileFormProps {
     childrenUnder18?: string;
     isStudent?: boolean;
   };
-  submitLabel: string;
+  submitLabelKey: string;
 }
 
-export function ProfileForm({ action, defaultValues, submitLabel }: ProfileFormProps) {
+export function ProfileForm({ action, defaultValues, submitLabelKey }: ProfileFormProps) {
   const { t } = useTranslation();
   const [state, formAction, isPending] = useActionState(
     async (_prev: unknown, formData: FormData) => {
@@ -58,11 +58,11 @@ export function ProfileForm({ action, defaultValues, submitLabel }: ProfileFormP
         {/* Personal Information */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">פרטים אישיים</CardTitle>
+            <CardTitle className="text-lg">{t("profile.personalInfo")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="fullName">שם מלא</Label>
+              <Label htmlFor="fullName">{t("profile.fullName")}</Label>
               <Input
                 id="fullName"
                 name="fullName"
@@ -75,7 +75,7 @@ export function ProfileForm({ action, defaultValues, submitLabel }: ProfileFormP
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="dateOfBirth">תאריך לידה</Label>
+              <Label htmlFor="dateOfBirth">{t("profile.dateOfBirth")}</Label>
               <Input
                 id="dateOfBirth"
                 name="dateOfBirth"
@@ -86,7 +86,7 @@ export function ProfileForm({ action, defaultValues, submitLabel }: ProfileFormP
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="idNumber">תעודת זהות</Label>
+              <Label htmlFor="idNumber">{t("profile.idNumber")}</Label>
               <Input
                 id="idNumber"
                 name="idNumber"
@@ -105,36 +105,36 @@ export function ProfileForm({ action, defaultValues, submitLabel }: ProfileFormP
         {/* Military Information */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">פרטים צבאיים</CardTitle>
+            <CardTitle className="text-lg">{t("profile.militaryInfo")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label>תפקיד (מתווה 2025)</Label>
+              <Label>{t("profile.role2025")}</Label>
               <Select name="serviceRole" defaultValue={defaultValues?.serviceRole || ""}>
                 <SelectTrigger>
-                  <SelectValue placeholder="בחר תפקיד" />
+                  <SelectValue placeholder={t("profile.selectRole")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="COMBAT">לוחם</SelectItem>
-                  <SelectItem value="TERRITORIAL_DEFENSE">הגנה מרחבית</SelectItem>
-                  <SelectItem value="SUPPORT">תומך/עורפי</SelectItem>
+                  <SelectItem value="COMBAT">{t("roles.combat")}</SelectItem>
+                  <SelectItem value="TERRITORIAL_DEFENSE">{t("roles.territorialDefense")}</SelectItem>
+                  <SelectItem value="SUPPORT">{t("roles.support")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="space-y-2">
-              <Label>מדרג פעילות (מתווה 2026)</Label>
+              <Label>{t("profile.tier2026")}</Label>
               <Select name="activityTier" defaultValue={defaultValues?.activityTier || ""}>
                 <SelectTrigger>
-                  <SelectValue placeholder="בחר מדרג" />
+                  <SelectValue placeholder={t("profile.selectTier")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="ALEPH_PLUS">א+</SelectItem>
-                  <SelectItem value="ALEPH">א</SelectItem>
-                  <SelectItem value="BET">ב</SelectItem>
-                  <SelectItem value="GIMEL">ג</SelectItem>
-                  <SelectItem value="DALET">ד</SelectItem>
-                  <SelectItem value="HE">ה</SelectItem>
+                  <SelectItem value="ALEPH_PLUS">{t("tiers.alephPlus")}</SelectItem>
+                  <SelectItem value="ALEPH">{t("tiers.aleph")}</SelectItem>
+                  <SelectItem value="BET">{t("tiers.bet")}</SelectItem>
+                  <SelectItem value="GIMEL">{t("tiers.gimel")}</SelectItem>
+                  <SelectItem value="DALET">{t("tiers.dalet")}</SelectItem>
+                  <SelectItem value="HE">{t("tiers.he")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -227,7 +227,7 @@ export function ProfileForm({ action, defaultValues, submitLabel }: ProfileFormP
         {/* Family Information */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">מצב משפחתי</CardTitle>
+            <CardTitle className="text-lg">{t("profile.familyStatus")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between">
@@ -271,7 +271,7 @@ export function ProfileForm({ action, defaultValues, submitLabel }: ProfileFormP
         )}
 
         <Button type="submit" size="lg" className="w-full" disabled={isPending}>
-          {isPending ? t("common.loading") : submitLabel}
+          {isPending ? t("common.loading") : t(submitLabelKey)}
         </Button>
       </form>
     </motion.div>

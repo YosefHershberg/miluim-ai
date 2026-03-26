@@ -1,5 +1,6 @@
 import { requireProfile } from "@/lib/auth";
 import { ProfileForm } from "@/components/profile/profile-form";
+import { ProfileEditHeader } from "@/components/profile/profile-page-header";
 import { editProfile } from "@/actions/profile";
 
 export default async function EditProfilePage() {
@@ -27,11 +28,11 @@ export default async function EditProfilePage() {
   return (
     <main className="min-h-screen py-8 px-4">
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-2xl font-bold text-center mb-6">עריכת פרופיל</h1>
+        <ProfileEditHeader />
         <ProfileForm
           action={editProfile}
           defaultValues={defaultValues}
-          submitLabel="שמור שינויים"
+          submitLabelKey="profile.saveChanges"
         />
       </div>
     </main>

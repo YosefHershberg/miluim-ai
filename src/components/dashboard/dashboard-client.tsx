@@ -56,7 +56,7 @@ export function DashboardClient({
             >
               {totalDays}
             </motion.p>
-            <p className="text-sm opacity-60 mt-1">ימי צו 8</p>
+            <p className="text-sm opacity-60 mt-1">{t("dashboard.tzav8Days")}</p>
           </CardContent>
         </Card>
       </motion.div>
@@ -70,7 +70,7 @@ export function DashboardClient({
         >
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">פילוח לפי שנים</CardTitle>
+              <CardTitle className="text-lg">{t("dashboard.yearBreakdown")}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               {sortedYears.map(({ year, days }) => (
@@ -88,7 +88,7 @@ export function DashboardClient({
                       />
                     </div>
                     <span className="text-sm text-muted-foreground w-16 text-left">
-                      {days} ימים
+                      {days} {t("common.days")}
                     </span>
                   </div>
                 </div>
@@ -108,17 +108,17 @@ export function DashboardClient({
         <QuickAction
           href="/benefits"
           icon={<Calculator className="h-5 w-5" />}
-          label="חשב הטבות"
+          label={t("dashboard.calculate")}
         />
         <QuickAction
           href="/service-periods/add"
           icon={<Plus className="h-5 w-5" />}
-          label="הוסף תקופה"
+          label={t("dashboard.addPeriodShort")}
         />
         <QuickAction
           href="/profile"
           icon={<User className="h-5 w-5" />}
-          label="פרופיל"
+          label={t("nav.profile")}
         />
       </motion.div>
 

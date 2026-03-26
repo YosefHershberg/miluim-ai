@@ -6,8 +6,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion, AnimatePresence } from "framer-motion";
 import type { BenefitResult } from "@/services/benefits-calculator";
+import { useTranslation } from "@/lib/i18n";
+import { translateIneligibleReason, translateDescription, translatePaymentDate } from "@/services/benefit-translations";
 
 export function BenefitCard({ benefit }: { benefit: BenefitResult }) {
+  const { t, locale } = useTranslation();
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -34,11 +37,11 @@ export function BenefitCard({ benefit }: { benefit: BenefitResult }) {
               )}
             </div>
             <div>
-              <p className="font-medium leading-tight">{benefit.nameHe}</p>
-              <p className="text-xs text-muted-foreground">{benefit.nameEn}</p>
+              <p className="font-medium leading-tight">{locale === "he" ? benefit.nameHe : benefit.nameEn}</p>
+              <p className="text-xs text-muted-foreground">{locale === "he" ? benefit.nameEn : benefit.nameHe}</p>
               {!benefit.eligible && benefit.ineligibleReason && (
                 <p className="text-xs text-destructive mt-1">
-                  {benefit.ineligibleReason}
+                  {locale === "en" ? translateIneligibleReason(benefit.ineligibleReason) : benefit.ineligibleReason}
                 </p>
               )}
             </div>
@@ -54,7 +57,7 @@ export function BenefitCard({ benefit }: { benefit: BenefitResult }) {
                 variant={benefit.category === "direct" ? "default" : "secondary"}
                 className="text-xs"
               >
-                {benefit.category === "direct" ? "ישירות" : "במימוש"}
+                {benefit.category === "direct" ? t("benefits.directLabel") : t("benefits.redeemableLabel")}
               </Badge>
               <Badge variant="outline" className="text-xs">
                 {benefit.framework}
@@ -77,7 +80,9 @@ export function BenefitCard({ benefit }: { benefit: BenefitResult }) {
               className="overflow-hidden"
             >
               <div className="mt-3 pt-3 border-t space-y-2 text-sm">
-                <p className="text-muted-foreground">{benefit.description}</p>
+                <p className="text-muted-foreground">
+                  {locale === "en" ? translateDescription(benefit.description) : benefit.description}
+                </p>
                 <div className="bg-muted/50 rounded-lg p-3">
                   <p className="font-mono text-xs">
                     {benefit.calculationBreakdown}
@@ -85,11 +90,11 @@ export function BenefitCard({ benefit }: { benefit: BenefitResult }) {
                 </div>
                 {benefit.paymentDate && (
                   <p className="text-xs text-muted-foreground">
-                    מועד תשלום: {benefit.paymentDate}
+                    {t("benefits.paymentDateLabel")} {locale === "en" ? translatePaymentDate(benefit.paymentDate) : benefit.paymentDate}
                   </p>
                 )}
                 <p className="text-xs text-muted-foreground">
-                  סעיף: {benefit.section}
+                  {t("benefits.sectionLabel")} {benefit.section}
                 </p>
               </div>
             </motion.div>

@@ -74,7 +74,7 @@ export function AddServicePeriodFlow() {
     } else {
       const errorMsg = allErrors.length > 0
         ? allErrors.map((e) => `${e.fileName}: ${e.error}`).join("\n")
-        : "לא הצלחנו לחלץ תקופות מהקבצים";
+        : t("myMiluim.extractFailed");
       toast.error(errorMsg);
       setStep("upload");
     }
@@ -100,9 +100,9 @@ export function AddServicePeriodFlow() {
     if (result.success) {
       setStep("success");
       if (result.skipped > 0) {
-        toast.success(`נשמרו ${result.saved} תקופות. ${result.skipped} תקופות כפולות דולגו.`);
+        toast.success(t("myMiluim.savedWithSkipped", { saved: result.saved, skipped: result.skipped }));
       } else {
-        toast.success("התקופות נשמרו בהצלחה");
+        toast.success(t("myMiluim.savedSuccess"));
       }
       setTimeout(() => router.push("/service-periods"), 1500);
     }
@@ -128,9 +128,9 @@ export function AddServicePeriodFlow() {
                   className="flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-8 cursor-pointer hover:border-primary/50 transition-colors"
                 >
                   <Upload className="h-10 w-10 text-muted-foreground mb-3" />
-                  <p className="font-medium">העלה טופס 3010</p>
+                  <p className="font-medium">{t("myMiluim.pdfUpload")}</p>
                   <p className="text-sm text-muted-foreground mt-1">
-                    PDF — ניתן להעלות מספר קבצים
+                    {t("myMiluim.pdfMultiple")}
                   </p>
                   <input
                     id="file-upload"
@@ -154,7 +154,7 @@ export function AddServicePeriodFlow() {
                       </div>
                     ))}
                     <Button onClick={handleUpload} className="w-full mt-4">
-                      חלץ נתונים
+                      {t("myMiluim.extractData")}
                     </Button>
                   </div>
                 )}
@@ -214,12 +214,12 @@ export function AddServicePeriodFlow() {
               return (
                 <div className="text-center space-y-1">
                   <p className="text-sm text-muted-foreground">
-                    נמצאו {periods.length} תקופות שירות — בדוק את הנתונים ואשר
+                    {t("myMiluim.foundPeriods", { count: periods.length })}
                   </p>
                   {duplicateCount > 0 && (
                     <p className="text-sm text-amber-600 dark:text-amber-400 flex items-center justify-center gap-1">
                       <Copy className="h-3.5 w-3.5" />
-                      {duplicateCount} תקופות כבר קיימות במערכת ויידולגו · {newCount} חדשות יישמרו
+                      {t("myMiluim.duplicateInfo", { duplicates: duplicateCount, new: newCount })}
                     </p>
                   )}
                 </div>
@@ -234,33 +234,36 @@ export function AddServicePeriodFlow() {
                 transition={{ delay: i * 0.1 }}
               >
                 <Card className={period.isDuplicate ? "opacity-60 border-amber-500/50" : ""}>
-                  <CardHeader className="pb-3">
-                    <div className="flex items-center justify-between gap-2">
-                      <CardTitle className="text-base">
-                        {new Date(period.startDate).toLocaleDateString("he-IL")} –{" "}
-                        {new Date(period.endDate).toLocaleDateString("he-IL")} ({period.totalDays} ימים)
-                      </CardTitle>
-                      {period.isDuplicate && (
-                        <Badge variant="outline" className="text-amber-600 border-amber-500 shrink-0 gap-1">
-                          <Copy className="h-3 w-3" />
-                          כפול
+                  <CardContent className="py-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <p className="font-medium text-sm truncate">
+                          {new Date(period.startDate).toLocaleDateString("he-IL")} –{" "}
+                          {new Date(period.endDate).toLocaleDateString("he-IL")}
+                        </p>
+                        <Badge variant="secondary" className="shrink-0 text-xs">
+                          {period.totalDays} {t("common.days")}
                         </Badge>
-                      )}
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center gap-3">
-                      <Switch
-                        id={`emergency-${i}`}
-                        checked={period.isEmergencyOrder}
-                        disabled={period.isDuplicate}
-                        onCheckedChange={(checked) =>
-                          updatePeriod(i, { isEmergencyOrder: checked })
-                        }
-                      />
-                      <Label htmlFor={`emergency-${i}`} className={period.isDuplicate ? "text-muted-foreground" : ""}>
-                        צו 8
-                      </Label>
+                        {period.isDuplicate && (
+                          <Badge variant="outline" className="text-amber-600 border-amber-500 shrink-0 gap-1 text-xs">
+                            <Copy className="h-3 w-3" />
+                            {t("myMiluim.duplicate")}
+                          </Badge>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <Label htmlFor={`emergency-${i}`} className={`text-sm ${period.isDuplicate ? "text-muted-foreground" : ""}`}>
+                          {t("myMiluim.orderTzav8")}
+                        </Label>
+                        <Switch
+                          id={`emergency-${i}`}
+                          checked={period.isEmergencyOrder}
+                          disabled={period.isDuplicate}
+                          onCheckedChange={(checked) =>
+                            updatePeriod(i, { isEmergencyOrder: checked })
+                          }
+                        />
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -302,7 +305,7 @@ export function AddServicePeriodFlow() {
                 >
                   <Check className="h-8 w-8 text-green-600 dark:text-green-400" />
                 </motion.div>
-                <p className="font-medium text-lg">התקופות נשמרו בהצלחה!</p>
+                <p className="font-medium text-lg">{t("myMiluim.savedSuccess")}</p>
               </CardContent>
             </Card>
           </motion.div>

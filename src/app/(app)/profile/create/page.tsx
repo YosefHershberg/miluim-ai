@@ -2,6 +2,7 @@ import { requireAuth } from "@/lib/auth";
 import { getUserProfileByUserId } from "@/data-access/user-profile";
 import { redirect } from "next/navigation";
 import { ProfileForm } from "@/components/profile/profile-form";
+import { ProfileCreateHeader } from "@/components/profile/profile-page-header";
 import { createProfile } from "@/actions/profile";
 
 export default async function CreateProfilePage() {
@@ -12,11 +13,8 @@ export default async function CreateProfilePage() {
   return (
     <main className="min-h-screen py-8 px-4">
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-2xl font-bold text-center mb-6">יצירת פרופיל</h1>
-        <p className="text-center text-muted-foreground mb-8">
-          מלא את הפרטים שלך כדי לחשב את ההטבות המגיעות לך
-        </p>
-        <ProfileForm action={createProfile} submitLabel="צור פרופיל" />
+        <ProfileCreateHeader />
+        <ProfileForm action={createProfile} submitLabelKey="profile.createButton" />
       </div>
     </main>
   );
