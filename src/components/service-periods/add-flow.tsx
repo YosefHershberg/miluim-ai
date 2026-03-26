@@ -3,8 +3,9 @@
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Upload, FileText, Check, Loader2, AlertCircle } from "lucide-react";
+import { Upload, FileText, Check, Loader2, AlertCircle, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -17,6 +18,7 @@ interface ExtractedPeriod {
   endDate: string;
   totalDays: number;
   isEmergencyOrder: boolean;
+  isDuplicate: boolean;
 }
 
 type Step = "upload" | "processing" | "review" | "success";
@@ -59,7 +61,7 @@ export function AddServicePeriodFlow() {
         allErrors.push({ fileName: r.fileName, error: r.error });
       } else {
         for (const p of r.periods) {
-          allPeriods.push({ ...p, isEmergencyOrder: true });
+          allPeriods.push({ ...p, isEmergencyOrder: true, isDuplicate: p.isDuplicate });
         }
       }
     }
@@ -97,7 +99,11 @@ export function AddServicePeriodFlow() {
 
     if (result.success) {
       setStep("success");
-      toast.success("התקופות נשמרו בהצלחה");
+      if (result.skipped > 0) {
+        toast.success(`נשמרו ${result.saved} תקופות. ${result.skipped} תקופות כפולות דולגו.`);
+      } else {
+        toast.success("התקופות נשמרו בהצלחה");
+      }
       setTimeout(() => router.push("/service-periods"), 1500);
     }
     setSaving(false);
@@ -202,9 +208,23 @@ export function AddServicePeriodFlow() {
               </Card>
             )}
 
-            <p className="text-sm text-muted-foreground text-center">
-              נמצאו {periods.length} תקופות שירות — בדוק את הנתונים ואשר
-            </p>
+            {(() => {
+              const duplicateCount = periods.filter((p) => p.isDuplicate).length;
+              const newCount = periods.length - duplicateCount;
+              return (
+                <div className="text-center space-y-1">
+                  <p className="text-sm text-muted-foreground">
+                    נמצאו {periods.length} תקופות שירות — בדוק את הנתונים ואשר
+                  </p>
+                  {duplicateCount > 0 && (
+                    <p className="text-sm text-amber-600 dark:text-amber-400 flex items-center justify-center gap-1">
+                      <Copy className="h-3.5 w-3.5" />
+                      {duplicateCount} תקופות כבר קיימות במערכת ויידולגו · {newCount} חדשות יישמרו
+                    </p>
+                  )}
+                </div>
+              );
+            })()}
 
             {periods.map((period, i) => (
               <motion.div
@@ -213,23 +233,34 @@ export function AddServicePeriodFlow() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
               >
-                <Card>
+                <Card className={period.isDuplicate ? "opacity-60 border-amber-500/50" : ""}>
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-base">
-                      {new Date(period.startDate).toLocaleDateString("he-IL")} –{" "}
-                      {new Date(period.endDate).toLocaleDateString("he-IL")} ({period.totalDays} ימים)
-                    </CardTitle>
+                    <div className="flex items-center justify-between gap-2">
+                      <CardTitle className="text-base">
+                        {new Date(period.startDate).toLocaleDateString("he-IL")} –{" "}
+                        {new Date(period.endDate).toLocaleDateString("he-IL")} ({period.totalDays} ימים)
+                      </CardTitle>
+                      {period.isDuplicate && (
+                        <Badge variant="outline" className="text-amber-600 border-amber-500 shrink-0 gap-1">
+                          <Copy className="h-3 w-3" />
+                          כפול
+                        </Badge>
+                      )}
+                    </div>
                   </CardHeader>
                   <CardContent>
                     <div className="flex items-center gap-3">
                       <Switch
                         id={`emergency-${i}`}
                         checked={period.isEmergencyOrder}
+                        disabled={period.isDuplicate}
                         onCheckedChange={(checked) =>
                           updatePeriod(i, { isEmergencyOrder: checked })
                         }
                       />
-                      <Label htmlFor={`emergency-${i}`}>צו 8</Label>
+                      <Label htmlFor={`emergency-${i}`} className={period.isDuplicate ? "text-muted-foreground" : ""}>
+                        צו 8
+                      </Label>
                     </div>
                   </CardContent>
                 </Card>

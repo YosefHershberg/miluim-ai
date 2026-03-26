@@ -17,6 +17,13 @@
   "auth.email": "Email",
   "auth.password": "Password",
   "auth.error": "Authentication error. Please try again.",
+  "auth.login.welcome": "Welcome back",
+  "auth.login.subtitle": "Sign in to access your benefits dashboard",
+  "auth.login.secure": "Secure & Private",
+  "auth.login.secured": "Secured connection",
+  "auth.login.encrypted": "256-bit encrypted",
+  "auth.login.privacy": "Your data stays private",
+  "auth.login.backHome": "Back to home",
 
   "dashboard.title": "Dashboard",
   "dashboard.welcome": "Hello, {{name}}",
@@ -172,5 +179,33 @@
 
   "theme.light": "Light",
   "theme.dark": "Dark",
-  "theme.system": "System"
+  "theme.system": "System",
+
+  "landing.hero.badge": "Smart Reserve Duty Benefits Calculator",
+  "landing.hero.title": "All Your Benefits",
+  "landing.hero.titleHighlight": "In One Place",
+  "landing.hero.subtitle": "Upload your 3010 form and get an accurate calculation of all the benefits, grants, and rights you're entitled to as a reservist",
+  "landing.hero.cta": "Get Started",
+  "landing.hero.secondary": "Learn More",
+
+  "landing.features.title": "How It Works",
+  "landing.features.subtitle": "Three simple steps to get all your benefits",
+  "landing.features.upload.title": "Upload 3010 Form",
+  "landing.features.upload.description": "Upload your document and AI will extract all the data for you automatically",
+  "landing.features.calculate.title": "Automatic Calculation",
+  "landing.features.calculate.description": "The system calculates all the benefits, grants, and rights you're entitled to",
+  "landing.features.track.title": "Track & Monitor",
+  "landing.features.track.description": "Track all your benefits and check what else you're entitled to",
+
+  "landing.stats.benefits": "Benefit Types",
+  "landing.stats.accuracy": "Calculation Accuracy",
+  "landing.stats.time": "Processing Time",
+  "landing.stats.timeValue": "seconds",
+
+  "landing.cta.title": "Ready to discover what you're owed?",
+  "landing.cta.subtitle": "Join now and get a full calculation of all your rights",
+  "landing.cta.button": "Sign In & Discover",
+
+  "landing.footer.disclaimer": "The information on this site is for informational purposes only and does not constitute legal advice or a substitute for verification with official authorities",
+  "landing.footer.rights": "All rights reserved"
 }

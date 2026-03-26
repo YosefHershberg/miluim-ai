@@ -17,6 +17,13 @@
   "auth.email": "אימייל",
   "auth.password": "סיסמה",
   "auth.error": "שגיאה באימות. נסה שוב.",
+  "auth.login.welcome": "ברוך הבא",
+  "auth.login.subtitle": "התחבר כדי לגשת ללוח ההטבות שלך",
+  "auth.login.secure": "מאובטח ופרטי",
+  "auth.login.secured": "חיבור מאובטח",
+  "auth.login.encrypted": "הצפנת 256-bit",
+  "auth.login.privacy": "המידע שלך נשאר פרטי",
+  "auth.login.backHome": "חזרה לדף הבית",
 
   "dashboard.title": "לוח בקרה",
   "dashboard.welcome": "שלום, {{name}}",
@@ -172,5 +179,33 @@
 
   "theme.light": "בהיר",
   "theme.dark": "כהה",
-  "theme.system": "מערכת"
+  "theme.system": "מערכת",
+
+  "landing.hero.badge": "מחשבון הטבות מילואים חכם",
+  "landing.hero.title": "כל ההטבות שמגיעות לך",
+  "landing.hero.titleHighlight": "במקום אחד",
+  "landing.hero.subtitle": "העלה את טופס 3010 שלך ותקבל חישוב מדויק של כל ההטבות, המענקים והזכויות שמגיעים לך כמשרת מילואים",
+  "landing.hero.cta": "התחל עכשיו",
+  "landing.hero.secondary": "גלה עוד",
+
+  "landing.features.title": "איך זה עובד?",
+  "landing.features.subtitle": "שלושה שלבים פשוטים לקבלת כל ההטבות שלך",
+  "landing.features.upload.title": "העלה טופס 3010",
+  "landing.features.upload.description": "העלה את המסמך ו-AI יחלץ את כל הנתונים בשבילך אוטומטית",
+  "landing.features.calculate.title": "חישוב אוטומטי",
+  "landing.features.calculate.description": "המערכת מחשבת את כל ההטבות, המענקים והזכויות שמגיעים לך",
+  "landing.features.track.title": "מעקב ובקרה",
+  "landing.features.track.description": "עקוב אחרי כל ההטבות שלך ובדוק מה עוד מגיע לך",
+
+  "landing.stats.benefits": "סוגי הטבות",
+  "landing.stats.accuracy": "דיוק חישוב",
+  "landing.stats.time": "זמן עיבוד",
+  "landing.stats.timeValue": "שניות",
+
+  "landing.cta.title": "מוכן לגלות כמה מגיע לך?",
+  "landing.cta.subtitle": "הצטרף עכשיו וקבל חישוב מלא של כל הזכויות שלך",
+  "landing.cta.button": "התחבר וגלה",
+
+  "landing.footer.disclaimer": "המידע באתר הינו לצורך מידע בלבד ואינו מהווה ייעוץ משפטי או תחליף לבדיקה מול הגורמים הרשמיים",
+  "landing.footer.rights": "כל הזכויות שמורות"
 }

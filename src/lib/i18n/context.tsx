@@ -4,6 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useInsertionEffect,
   useState,
   type ReactNode,
@@ -29,19 +30,23 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 const STORAGE_KEY = "miluim-ai-locale";
 
-function getInitialLocale(): Locale {
-  if (typeof window === "undefined") return "he";
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored === "he" || stored === "en") return stored;
-  return "he";
-}
-
 /**
  * Provides language context (locale, direction, translation function) to the app.
  * Hebrew is the default language. Persists preference to localStorage.
+ *
+ * Always initializes with "he" to match the server render, then syncs
+ * from localStorage after mount to avoid React hydration mismatches.
  */
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(getInitialLocale);
+  const [locale, setLocaleState] = useState<Locale>("he");
+
+  // Sync from localStorage after hydration to avoid SSR/client mismatch
+  useEffect(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored === "he" || stored === "en") {
+      setLocaleState(stored);
+    }
+  }, []);
 
   // Sync HTML dir/lang attributes
   useInsertionEffect(() => {
