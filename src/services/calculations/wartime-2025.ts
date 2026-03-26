@@ -33,7 +33,7 @@ export function specialCompensation2025(
   return benefit("special-comp-2025", "התגמול המיוחד", "Special Compensation", "direct", amount,
     "תגמול מיוחד משולם על כל ימי 2025 לאחר חציית סף 32 יום",
     `${days2025} ימים × ${rate} ₪/יום = ${amount.toLocaleString()} ₪`,
-    true, undefined, "2025", "4.1", "מאי השנה הבאה");
+    true, undefined, "2025", "4.1", "1 במאי 2026");
 }
 
 /** 4.2 Calendar Grant */
@@ -59,7 +59,7 @@ export function calendarGrant2025(
   return benefit("calendar-grant-2025", "המענק הקלנדרי", "Calendar Grant", "direct", amount,
     "מענק קלנדרי (ברוטו, לפני 25% מס)",
     `${points} נקודות זיכוי × ${CREDIT_POINT_VALUE} ₪ = ${amount.toLocaleString()} ₪`,
-    true, undefined, "2025", "4.2", "מאי השנה הבאה");
+    true, undefined, "2025", "4.2", "1 במאי 2026");
 }
 
 /** 4.3 Enhanced Personal Expenses */
@@ -83,7 +83,7 @@ export function personalExpenses2025(
   return benefit("personal-expenses-2025", "מענק הוצאות אישיות מוגדל", "Enhanced Personal Expenses", "direct", amount,
     "מענק הוצאות אישיות מוגדל מיום 40",
     `${blocks} בלוקים של 10 ימים × ${rate} ₪ = ${amount.toLocaleString()} ₪`,
-    true, undefined, "2025", "4.3");
+    true, undefined, "2025", "4.3", "ראשון לחודש בזמן השירות");
 }
 
 /** 4.4 Enhanced Family Grant */
@@ -148,7 +148,7 @@ export function digitalWallet2025(
   return benefit("digital-wallet-2025", "ארנק דיגיטלי", "Digital Wallet", "redeemable", amount,
     `ארנק דיגיטלי פייטר — ימים 1-${tier1MaxDays}: ${tier1Rate}₪, ${tier1MaxDays + 1}+: ${tier2Rate}₪, תקרה ${maxAmount.toLocaleString()}₪`,
     `${days2025} ימים → ${amount.toLocaleString()} ₪`,
-    true, undefined, "2025", "4.5");
+    true, undefined, "2025", "4.5", "בתוקף עד 31/12/2028");
 }
 
 /** 4.6 Tax Credit Points */
@@ -177,7 +177,7 @@ export function taxCredits2025(
   return benefit("tax-credits-2025", "נקודות זיכוי במס", "Tax Credit Points", "redeemable", amount,
     "נקודות זיכוי במס הכנסה — שנת מס 2026",
     `${points} נקודות × ${CREDIT_POINT_VALUE} ₪ = ${amount.toLocaleString()} ₪`,
-    true, undefined, "2025", "4.6", "מוחל בשנת המס הבאה");
+    true, undefined, "2025", "4.6", "שנת מס 2026 — דרך טופס 101");
 }
 
 /** 4.7 Household Maintenance — base 1,250 for all active reservists */
@@ -189,7 +189,7 @@ export function householdGrant2025(
     RATES_2025.householdMaintenance.base,
     "מענק למשרת מילואים פעיל",
     `${RATES_2025.householdMaintenance.base.toLocaleString()} ₪`,
-    true, undefined, "2025", "4.7");
+    true, undefined, "2025", "4.7", "1 בספטמבר 2025");
 }
 
 /** 4.7b Household Maintenance Enhanced — additional 1,250 for combat with 45+ days */
@@ -211,7 +211,7 @@ export function householdGrantEnhanced2025(
   return benefit("household-enhanced-2025", "מענק כלכלת הבית המוגדל", "Enhanced Household Grant", "direct", enhancedExtra,
     "מענק כלכלת הבית המוגדל ללוחם עם 45+ ימי צו 8 ב-2025",
     `${enhancedExtra.toLocaleString()} ₪`,
-    true, undefined, "2025", "4.7");
+    true, undefined, "2025", "4.7", "1 בספטמבר 2025");
 }
 
 /** 4.8 Commander Grant */

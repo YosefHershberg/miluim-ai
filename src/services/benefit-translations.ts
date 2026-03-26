@@ -52,9 +52,13 @@ const descriptionPatterns: [RegExp, (m: RegExpMatchArray) => string][] = [
   [/^תוכנית עמית$/, () => "Amit Program"],
   // Payment dates & misc
   [/^מוחל בשנת המס הבאה$/, () => "Applied next tax year"],
+  [/^שנת מס (\d+) — דרך טופס 101$/, (m) => `Tax year ${m[1]} — via Form 101`],
   [/^בתוקף עד (.+)$/, (m) => `Valid until ${m[1]}`],
   [/^מאי השנה הבאה$/, () => "May next year"],
+  [/^1 במאי (\d+)$/, (m) => `May 1, ${m[1]}`],
   [/^1 בספטמבר$/, () => "September 1st"],
+  [/^1 בספטמבר (\d+)$/, (m) => `September 1, ${m[1]}`],
+  [/^ראשון לחודש בזמן השירות$/, () => "First of each month during service"],
   [/^משולם דרך המעסיק \/ ישירות מביטוח לאומי$/, () => "Paid via employer / directly from NII"],
   [/^מענק כלכלת הבית מוגדל \(א\+ 45\+ ימים\)$/, () => "Enhanced household grant (A+ 45+ days)"],
 ];

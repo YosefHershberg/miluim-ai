@@ -42,7 +42,7 @@ export function specialCompensation2026(
   return b("special-comp-2026", "התגמול המיוחד", "Special Compensation", "direct", amount,
     "תגמול מיוחד — כל ימי 2026 לאחר חציית סף 32",
     `${days2026} ימים × ${rate} ₪/יום = ${amount.toLocaleString()} ₪`,
-    true, undefined, "2026", "5.1", "מאי השנה הבאה");
+    true, undefined, "2026", "5.1", "1 במאי 2027");
 }
 
 /** 5.2 Calendar Grant */
@@ -69,7 +69,7 @@ export function calendarGrant2026(
   return b("calendar-grant-2026", "המענק הקלנדרי", "Calendar Grant", "direct", netAmount,
     "מענק קלנדרי — לאחר 25% מס",
     `${points} נקודות × ${CREDIT_POINT_VALUE} ₪ = ${grossAmount} ₪ ברוטו, נטו: ${netAmount} ₪`,
-    true, undefined, "2026", "5.2", "מאי השנה הבאה");
+    true, undefined, "2026", "5.2", "1 במאי 2027");
 }
 
 /** 5.3 Enhanced Personal Expenses — per-day on ALL days */
@@ -92,7 +92,7 @@ export function personalExpenses2026(
   return b("personal-expenses-2026", "מענק הוצאות אישיות מוגדל", "Enhanced Personal Expenses", "direct", amount,
     "מענק הוצאות אישיות מוגדל — לפי יום על כל הימים",
     `${days2026} ימים × ${rate} ₪/יום = ${amount.toLocaleString()} ₪`,
-    true, undefined, "2026", "5.3");
+    true, undefined, "2026", "5.3", "ראשון לחודש בזמן השירות");
 }
 
 /** 5.4 Enhanced Family Grant — per-day on ALL days */
@@ -187,7 +187,7 @@ export function taxCredits2026(
   return b("tax-credits-2026", "נקודות זיכוי במס", "Tax Credit Points", "redeemable", amount,
     "נקודות זיכוי במס הכנסה",
     `${points} נקודות × ${CREDIT_POINT_VALUE} ₪ = ${amount.toLocaleString()} ₪`,
-    true, undefined, "2026", "5.6", "מוחל בשנת המס הבאה");
+    true, undefined, "2026", "5.6", "שנת מס 2027 — דרך טופס 101");
 }
 
 /** 5.7 Household Maintenance */
@@ -204,7 +204,7 @@ export function householdGrant2026(
 
   return b("household-2026", "מענק כלכלת הבית", "Household Maintenance Grant", "direct", amount,
     isEnhanced ? "מענק כלכלת הבית מוגדל (א+ 45+ ימים)" : "מענק כלכלת הבית בסיסי",
-    `${amount.toLocaleString()} ₪`, true, undefined, "2026", "5.7");
+    `${amount.toLocaleString()} ₪`, true, undefined, "2026", "5.7", "1 בספטמבר 2026");
 }
 
 /** 5.8 Commander Grant */
